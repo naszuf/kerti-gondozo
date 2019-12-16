@@ -47,9 +47,8 @@ Miután csatlakoztattuk a képernyőt, töltsük le és telepítsük annak köny
 SSD1306 Arduino könyvtár
 Miután újraindította az IDE-t, már működik is. Töltsük fel az alábbiakban feltüntetett vázlatot.
 Teszteljük az OLED kijelzőnket:
-
-`
-> /***********************************************************************
+```
+ /***********************************************************************
 *  NodeMCU és Oled kijelzo teszt
 ************************************************************************/
 
@@ -70,4 +69,33 @@ void setup()
 void loop()
 {
 }
-`> 
+```
+
+Vegye figyelembe, hogy ha nem határoz meg eltérő méretű szöveget, akkor az alapértelmezett 8X8. Ha másikat szeretne meghatározni, akkor használhatja ezt a típust is: oled.setFont (font5x7).
+
+
+![kepernyo](https://cdn.instructables.com/FCT/W92C/IZ6BHHUR/FCTW92CIZ6BHHUR.LARGE.jpg?auto=webp&width=1024&fit=bounds)
+
+
+5. lépés: A levegő hőmérsékletének és páratartalmának mérése
+
+Az időjárási adatok rögzítéséhez leggyakrabban használt érzékelők a DHT22 (vagy testvére, DHT11), digitális rokon,
+páratartalom és hőmérséklet érzékelők. Kapacitív páratartalom-érzékelővel és termisztorral mérik
+a környező levegőt, és digitális jelet küldenek az adatcsatornán (nincs szükség analóg bemeneti pinekre).
+Az érzékelő tápfeszültsége 3,3–5 V, és –40oC és + 80oC közötti hőmérsékleten működik, +/-0,5 °C  pontossággal és +/- 2% relatív páratartalom pontossággal. Fontos szem előtt tartani azt is, hogy az érzékelése, a leolvasási
+időtartam átlagosan 2 másodperc (a leolvasások közötti legkisebb idő). Az Adafruit oldala sok információval szolgál
+mindkettőről, a DHT22 és testvéréről, a DHT11-ről. Én a  A DHT11et használtam.
+4 tűvel rendelkezik :
+PIN 1. VCC (-vel csatlakozunk a NodeMCU 3.3V-jához);
+PIN 2. Adatcsatorna;
+PIN 3. Nincs csatlakoztatva
+PIN 4. Földelés.
+Ha az érzékelőt 20 méternél rkisebb távolságokra használja, 10K ellenállást kell csatlakoztatni
+Adatok és VCC csatlakozók közé. A kimeneti adat (PIN 2) csatlakozót a NodeMCU D3 érintkezőjéhez lehet csatlakoztatni (lásd az ábrán).
+
+![](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.engineersgarage.com%2Fesp8266%2Finterfacing-dht11-with-nodemcu%2F&psig=AOvVaw3RGuID2sUP5ck2tZ7NGHqP&ust=1576608402297000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLCK3JDquuYCFQAAAAAdAAAAABAI)
+
+Ha az érzékelőt bekötöttük töltsük le a DHT könyvtárat az Adafruit github tárházából, és telepítsük a készülékre, az
+Arduino könyvtár fájljai közé. Futtassa az alábbi kódot , a DHT érzékelőt ezzel a kóddal tudja ellenőrzni, hogy minden rendben van-e:
+
+

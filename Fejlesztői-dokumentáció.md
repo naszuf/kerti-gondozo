@@ -1,6 +1,6 @@
 A NodeMcu egy nyílt forráskódú fejlesztői kártya, amely az IoT világába repít el bennünket. Beépített Wifi modullal rendelkezik. Az ESP8266 modul egyszerű megoldást kínál WiFi kapcsolatok létesítésére. Számítógépes oldalról nem igényel extra kiegészítést. Programozását és tudását tekintve hasonlít az Arduino UNO-ra. A programok feltöltésére az Arduino IDE fejlesztői környezetet használtam. A leírás célja, hogy megmutassa azt ,hogyan tudunk egy öntöző rendszert az Arduino IDE fejlesztői környezettel illetve egyéb kiegészítőkkel az alapoktól egy komplett működő rendszerré varázsolni. Lássunk is neki. 
 
-1.Arduino IDE fejlesztői környezet letöltése
+##  1.Arduino IDE fejlesztői környezet letöltése
 
 ![](https://1.bp.blogspot.com/-U9694IH__zs/Wu1telel5GI/AAAAAAAARyA/GpX_sJGHczY9vNQiYSfWmHL9kemcGo0hgCLcBGAs/s1600/Arduino_IDE_Nodemcu.png)
 
@@ -9,7 +9,7 @@ Első lépésként le kell tölteni az Arduino fejlesztő környezetét. Ezt leg
 
 A letöltés után telepítsd a szoftvert, majd nyisd meg a programot.
 
-2. ESP8266 kiegészítő könyvtár telepítése az Arduino IDE-ben
+## 2. ESP8266 kiegészítő könyvtár telepítése az Arduino IDE-ben
 
 Miután megnyílt a program, válaszd a bal felső sarokban File/Preferences funkciót majd másold be a következő sort az „Additional Boards Manager URLs:” mellé.
 
@@ -27,13 +27,13 @@ Ezután nyomj a Cancel gombra és nyisd meg a Tools/Board: ” ”/ Boards Manag
 
 
 
-3. NodeMcu kiválasztása
+## 3. NodeMcu kiválasztása
 
 Nincs más dolgunk, mint a megfelelő Boardot kiválasztani és ezzel a programozáshoz megteremtettük a feltételeket.
 
 ![](https://1.bp.blogspot.com/-15WrDIp00Vw/Wu1tfivYPDI/AAAAAAAARyU/ZnE9Oy24z7sq37v-NWxyVWiO3n2FGX3OQCEwYBhgL/s1600/Arduino_IDE_Nodemcu_esp8266_kiv%25C3%25A1laszt%25C3%25A1s.png)
 
-4.OLED kijelző
+## 4.OLED kijelző
 
 Az összegyűjtött adatok helyi ellenőrzése érdekében telepíteni kell egy kis OLED kijelzőt. A használt modell az OLED 128 x 64 SSD 1306 I2C. A nevet tekintve tudjuk, hogy ez a kijelző fő
 jellemzői:
@@ -77,7 +77,7 @@ Vegye figyelembe, hogy ha nem határoz meg eltérő méretű szöveget, akkor az
 ![kepernyo](https://cdn.instructables.com/FCT/W92C/IZ6BHHUR/FCTW92CIZ6BHHUR.LARGE.jpg?auto=webp&width=1024&fit=bounds)
 
 
-5. lépés: A levegő hőmérsékletének és páratartalmának mérése
+## 5. lépés: A levegő hőmérsékletének és páratartalmának mérése
 
 Az időjárási adatok rögzítéséhez leggyakrabban használt érzékelők a DHT22 (vagy testvére, DHT11), digitális rokon,
 páratartalom és hőmérséklet érzékelők. Kapacitív páratartalom-érzékelővel és termisztorral mérik
@@ -199,7 +199,7 @@ void clearOledDisplay()
 }
 ```
 
-6. lépés: A talaj nedvességtartalmának mérése
+## 6. lépés: A talaj nedvességtartalmának mérése
 
 Leggyakoribb választás az YL-69 érzékelő és az LM393 komparátor modul talajközeg hidrométer.
 Az LM393 modulnak 2 kimenete van, egy digitális (D0), amely beállítható a rajta található potenciométer segítségével, és

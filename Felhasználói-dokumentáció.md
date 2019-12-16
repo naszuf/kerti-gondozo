@@ -1,1 +1,15 @@
 Kedves felhasználó!
+Első lépésben  győződjön meg róla hogy a szenzorok jól a helyükön vannak-e. Ez nagyon fontos mivel ha nem jó helyen, rosszul, nem a helyükön helyezkednek el az érzékelők a növény túl sók vizet, hőt kaphat mivel a rendszer úgy érzékeli hideg, szárazság van.Más rossz eshetőségek is fenntállhatnak ilyen téren. HA meggyőződött a szenzorok állapotáról illetve a csatlakozásuk biztosságáról csatlakoztassa a micro usb csatlakozót a NodeMCU-hoz.
+Az alábbi képen látható az eszköz.
+![](https://www.mondaykids.com/media/catalog/product/cache/ebaefdd8244e9d937d98031606746575/h/t/httpsae01.alicdn.comkfhtb1gmpsfgatbunjsszfq6xgfpxarnetworking-internet-based-esp8266-micro-usb-repalce-cp2102-iot-nodemcu-lua-wireless-wifi-module-connector-development.jpg)
+
+Ha megtette a kijelzőn az elős ár másodpercben az előre beállított értékeket látja majd, kérem ellenőrizze helyességüket!
+```
+ DRY_SOIL - Száraz föld (ez az érték jelzi hogy milyen szenzor érték alatt öntözzön az öntözőrendszer)
+ WET_SOIL - nedves föld (ez az érték jelzi hogy milyen szenzor érték alatt NE öntözzön az öntözőrendszer)
+ COLD_TEMP - Hideg hőmérséklet  (ez az érték jelzi hogy milyen szenzor érték alatt működjön a melegítő rendszer , lámpa)
+ HOT_TEMP - meleg hőmérséklet  (ez az érték jelzi hogy milyen szenzor érték alatt NE működjön a melegítő rendszer , lámpa)
+ TIME_PUMP_ON - pumpa működési ideje (pl 15s is öntöz)
+ TIME_LAMP_ON - lámpa működési ideje
+```
+

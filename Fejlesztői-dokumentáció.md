@@ -93,7 +93,7 @@ PIN 4. Földelés.
 Ha az érzékelőt 20 méternél rkisebb távolságokra használja, 10K ellenállást kell csatlakoztatni
 Adatok és VCC csatlakozók közé. A kimeneti adat (PIN 2) csatlakozót a NodeMCU D3 érintkezőjéhez lehet csatlakoztatni (lásd az ábrán).
 
-![](https://www.google.com/url?sa=i&url=https%3A%2F%2Fsimple-circuit.com%2Fesp8266-nodemcu-dht11-ssd1306%2F&psig=AOvVaw0WdWSrIKs88zoRU057Idwh&ust=1576610008646000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDeu5HwuuYCFQAAAAAdAAAAABAJ)
+![](https://cdn.instructables.com/FGN/P7ER/J5IG1VXN/FGNP7ERJ5IG1VXN.LARGE.jpg?auto=webp&fit=bounds)
 
 Ha az érzékelőt bekötöttük töltsük le a DHT könyvtárat az Adafruit github tárházából, és telepítsük a készülékre, az
 Arduino könyvtár fájljai közé. Futtassa az alábbi kódot , a DHT érzékelőt ezzel a kóddal tudja ellenőrzni, hogy minden rendben van-e:

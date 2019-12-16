@@ -532,15 +532,16 @@ aplyCmd();
 A szenzor adatok alapján a programunknak ki kell számítania, hogy szükséges-e az ültetvény öntözése, bekapcsolja-e a
 vízszivattyút vagy az elektromos lámpát. Erre egy kettős 5 V relé modult használunk a szivattyú és a lámpa aktiválásához.
 Csatlakoztatása:
-5V tápegység ==> (4) "Vcc"
-NodeMCU D6 ==> (3) "IN1" (szivattyú)
-NodeMCU D7 ==> (2) "IN2" (lámpa)
-NodeMCU GND ==> (1) "GND" (*)
-Az SW-t illetően meg kell fordítanunk a logikát. A D6 és D7 kimeneti érintkezőknek normál esetben magasnak kell lenniük. Tehát a beállításnál meg kell változtatnia  kezdeti állapotukat az alábbiak szerint:
+1. 5V tápegység ==> (4) "Vcc"
+2. NodeMCU D6 ==> (3) "IN1" (szivattyú)
+3. NodeMCU D7 ==> (2) "IN2" (lámpa)
+4. NodeMCU GND ==> (1) "GND" (*)
+Az SW-t illetően meg kell fordítanunk a logikát. A D6 és D7 kimeneti érintkezőknek normál esetben magasnak kell lenniük. Tehát a beállításnál meg kell változtatni a  kezdeti állapotukat az alábbiak szerint:
 ```
 digitalWrite(PUMP_PIN, HIGH); 
 digitalWrite(LAMP_PIN, HIGH); 
 ```
 Ezek után már csak ki kell próbálni egy rendes pumpával.
+
 
 Remélem, hogy ez a projekt segít másoknak hasonló projektek megvalósításában!

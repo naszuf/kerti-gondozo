@@ -411,9 +411,10 @@ Ne feledje, hogy minden vetőmagtípus optimális hőmérséklete más tartomán
 felfelé haladva az alacsonyabb hőmérséklet a jó.
 A kapcsolatról (hőmérsékleti / csírázási napokról) további információt itt találhat az interneten.
 Miután ezt a 4 leolvasást (levegő hőmérséklete, levegő páratartalma, talaj nedvesség és talaj hőmérséklete) megkaptuk tudunk tovább lépni.
+
 Következő az időzítők beállítása:
 ```
-/* Automatic Control Parameters Definition */
+/* Automata időzítők */
 #define DRY_SOIL 66
 #define WET_SOIL 85
 #define COLD_TEMP 12
@@ -421,4 +422,125 @@ Következő az időzítők beállítása:
 #define TIME_PUMP_ON 15
 #define TIME_LAMP_ON 15
 ```
+Majd az automata rendszer működése :
 
+```
+/**************************************************************
+* Automata vezérlés a szenzor adatok szerint
+**************************************************************/
+void autoControlPlantation(void)
+{
+if (soilMoister < DRY_SOIL)
+{
+turnPumpOn();
+}
+if (airTemp < COLD_TEMP)
+{
+turnLampOn();
+}
+}
+```
+A fenti kód meghívott kódrészletei:
+```
+***************************************************
+* Pumba be
+****************************************************/
+void turnPumpOn()
+{
+pumpStatus = 1;
+aplyCmd();
+delay (TIME_PUMP_ON*1000);
+pumpStatus = 0;
+aplyCmd();
+}
+/***************************************************
+* Lámpa be
+****************************************************/
+void turnLampOn()
+{
+lampStatus = 1;
+aplyCmd();
+delay (TIME_LAMP_ON*1000);
+lampStatus = 0;
+aplyCmd();
+}
+```
+## 11. lépés: A BLYNK App létrehozása
+
+A BLYNK használatával nagyon könnyű építeni internetalapú projekteket. Először fel kell telepítenie a BLINK alkalmazás könyvtárát az Arduino IDE-n. Ha még nem rendelkezel vele, kövesd a következő lépéseket:
+1. Töltse le a BLYNK alkalmazást az Apple Iphone vagy a Google Android számára
+2. Telepítse az Arduino BLYNK könyvtárát. Ne felejtse el letölteni a ZIP fájlt (5 fájl van ott
+amelyet manuálisan kell telepíteni az Arduino könyvtárba).
+3. Az Arduino IDE újraindítása után rendben kell lennie a BLINK használatának.
+Most nyissuk meg alkalmazásunkat az okostelefonon:
+1. Nyissa meg a Blynk alkalmazást. Érintse meg az "Új projekt létrehozása" ikont
+2. Adjon nevet a projektnek (például "Nodemcu projekt")
+3. Válassza ki a megfelelő hardvermodellt: "NodeMCU"
+4. Vegye figyelembe a Hitelesítési Token elemet (e-mailben elküldheti neked, hogy megkönnyítse a kód másolását)
+5. Nyomja meg az "OK" gombot. Megjelenik egy üres képernyő pontokkal.
+6. Érintse meg a képernyőt a "Widget Box" megnyitásához.
+ Az általános specifikáció áttekintése után összefoglalhatjuk, hogy alkalmazásunknak szüksége van:
+1. Olvassa le az összes érzékelőt és ellenőrizze az aktuátorok állapotát
+2. Végezzen távoli műveleteket, "kapcsolja ki / be" a szivattyút és a lámpát
+3. Üzenetek küldése, ha a rendszer "offline" 
+4. Rögzítse az általános érzékelők adatait
+A "Tabok" lesz az első telepített widget. Írja be, és határozza meg a fenti "Tabnevek"
+Ezután lépjen az egyes fülre, és telepítse a widgeteket az alábbiak szerint:
+SZENZOROK
+LED: "PUMP" Piros; V0
+LED: "LAMP" zöld; V1
+KEZELŐK
+Gomb: "PUMP" Piros; kimenet: V3 0-1; mód: kapcsoló; címke: be: ACT, ki: OK
+Gomb: "LAMP" zöld; kimenet: V4 0-1; mód: kapcsoló; címke: be: ACT, ki: OK
+LED: "PUMP" Piros; V0
+LED: "LAMP" zöld; V6
+Értesítések: Értesítés, ha a HW offline állapotba kerül: BE
+GRAFIKA
+Megmutatandó adatok:
+V10 "Temp Air"
+V11 "Páratartalma a levegőnek"
+V12 "Talaj páratartalma"
+V13 "Talajhőmérséklet"
+
+Ha parancsot szeretne adni a Blynk gombbal, akkor a BLYNK_WRITE () függvényt meg kell határozni a loop () függvényen belül
+vagy a setup ()-ban. Erre a célra elkészítettük az alsó kódot, minden Blynk gombhoz (PUMPA és LÁMPA):
+```
+/****************************************************************
+* blynk gombok
+****************************************************************/
+BLYNK_WRITE(3) // Pumpa
+{
+int i=param.asInt();
+if (i==1)
+{
+pumpStatus = !pumpStatus;
+aplyCmd();
+}
+}
+BLYNK_WRITE(4) // Lámpa
+{
+int i=param.asInt();
+if (i==1)
+{
+lampStatus = !lampStatus;
+aplyCmd();
+}
+}
+```
+
+
+A szenzor adatok alapján a programunknak ki kell számítania, hogy szükséges-e az ültetvény öntözése, bekapcsolja-e a
+vízszivattyút vagy az elektromos lámpát. Erre egy kettős 5 V relé modult használunk a szivattyú és a lámpa aktiválásához.
+Csatlakoztatása:
+5V tápegység ==> (4) "Vcc"
+NodeMCU D6 ==> (3) "IN1" (szivattyú)
+NodeMCU D7 ==> (2) "IN2" (lámpa)
+NodeMCU GND ==> (1) "GND" (*)
+Az SW-t illetően meg kell fordítanunk a logikát. A D6 és D7 kimeneti érintkezőknek normál esetben magasnak kell lenniük. Tehát a beállításnál meg kell változtatnia  kezdeti állapotukat az alábbiak szerint:
+```
+digitalWrite(PUMP_PIN, HIGH); 
+digitalWrite(LAMP_PIN, HIGH); 
+```
+Ezek után már csak ki kell próbálni egy rendes pumpával.
+
+Remélem, hogy ez a projekt segít másoknak hasonló projektek megvalósításában!

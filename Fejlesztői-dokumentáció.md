@@ -97,5 +97,252 @@ Adatok és VCC csatlakozók közé. A kimeneti adat (PIN 2) csatlakozót a NodeM
 
 Ha az érzékelőt bekötöttük töltsük le a DHT könyvtárat az Adafruit github tárházából, és telepítsük a készülékre, az
 Arduino könyvtár fájljai közé. Futtassa az alábbi kódot , a DHT érzékelőt ezzel a kóddal tudja ellenőrzni, hogy minden rendben van-e:
+```
+/***************************************************************************************************************
+ * IoT DHT Hőmérséklet/páratartalom szenzor NodeMCU ESP-12 
+ *  DHT csatlakoztatva a NodeMCU D3-as pinjéhez
+ *  DHT adat az oled kejlzőre írva
+ *
+ ********************************************************************************************************************************/
+
+/* OLED */
+#include <ACROBOTIC_SSD1306.h> //  SCL ==> D1; SDA ==> D2
+#include <SPI.h>
+#include <Wire.h>
+
+/* DHT11*/
+#include "DHT.h"
+#define DHTPIN D3  
+#define DHTTYPE DHT11 
+DHT dht(DHTPIN, DHTTYPE);
+float para = 0;
+float temp = 0;
+
+void setup() 
+{
+  Serial.begin(115200);
+  delay(10);
+  dht.begin();
+  oledStart();
+}
+
+void loop() 
+{
+  getDhtData();
+  displayData();
+  delay(2000); // késleltetés a DHT11 adatokhoz
+}
+
+/***************************************************
+ * Start OLED
+ **************************************************/
+void oledStart(void)
+{
+  Wire.begin();  
+  oled.init();                      
+  clearOledDisplay();
+  oled.clearDisplay();             
+  oled.setTextXY(0,0);              
+  oled.putString(" NodeMCU farmer");
+}
+
+/***************************************************
+ *  DHT adat
+ **************************************************/
+void getDhtData(void)
+{
+  float tempIni = temp;
+  float paraIni = para;
+  temp = dht.readTemperature();
+  para = dht.readHumidity();
+  if (isnan(para) || isnan(temp))   // beolvasási hibánál nehogy túl hamar lépjen ki
+  {
+    Serial.println("Hiba beolvasásnál a DHT szenzorról!");
+    temp = tempIni;
+    para = paraIni;
+    return;
+  }
+}
+
+/**************************************************************
+ * Adatok kiírása szerial kimenetre illetve az oled kijelzőre
+ **************************************************************/
+void displayData(void)
+{
+  Serial.print(" Homerseklet: ");
+  Serial.print(temp);
+  Serial.print("oC   Páratartalom: ");
+  Serial.print(para);
+  Serial.println("%");
+  
+  oled.setTextXY(3,0);              // Kurzor pozíció a 3. sorra
+  oled.putString("Hőm: " + String(temp) + " oC");
+  oled.setTextXY(5,0);              // Kurzor pozíció az 5. sorra
+  oled.putString("Páratartalom:  " + String(para) + " %");
+}
+
+/***************************************************
+ * Oled kijelző törlés
+ **************************************************/
+void clearOledDisplay()
+{
+  oled.setFont(font8x8);
+  oled.setTextXY(0,0); oled.putString("                ");
+  oled.setTextXY(1,0); oled.putString("                ");
+  oled.setTextXY(2,0); oled.putString("                ");
+  oled.setTextXY(3,0); oled.putString("                ");
+  oled.setTextXY(4,0); oled.putString("                ");
+  oled.setTextXY(5,0); oled.putString("                ");
+  oled.setTextXY(6,0); oled.putString("                ");
+  oled.setTextXY(7,0); oled.putString("                ");
+  oled.setTextXY(0,0); oled.putString("                ");              
+}
+```
+
+6. lépés: A talaj nedvességtartalmának mérése
+
+Leggyakoribb választás az YL-69 érzékelő és az LM393 komparátor modul talajközeg hidrométer.
+Az LM393 modulnak 2 kimenete van, egy digitális (D0), amely beállítható a rajta található potenciométer segítségével, és
+egy analóg (A0). Ez a modul működtethető 3,3 V-os árammal is, ami nagyon kényelmes, ha egy
+NodeMCUnk van. Amit mi csinálunk, az az hogy LM393 4 pinjét felszereljük az alábbiak szerint:
+LM393 A0 kimenet A0 NodeMCU A0 bemenetre
+LM393 VCC a NodeMCU VCC-hez vagy a NodeMCU GPIO D3-hoz *
+LM393 GND a NodeMCU GND-hez
+LM393 D0 üresen marad
+
+Fontos kiemelni, hogy a helyes az, ha az érzékelő VCC-jét kimenetként csatlakoztatjuk egy digitális tűhöz, így az LM393
+csak akkor van áram alatt, ha olvasásra van szükségünk. Ez nem csak az energiatakarékosságból, hanem a szonda védelme szempontjából is fontos, a korrózióval szemben. Tehát az LM393-at közvetlenül a VCC-re (5 V) tápláltam, a kódot nem kell megváltoztatni. Ez jól működött.
+Az analóg port olvasásához az alábbi egyszerű rutin írható:
+
+```
+/***************************************************************************************************************
+ * dht + foldnedvesseg kijelzon
+ *  DHT csatlakoztatva D3-ra
+ *  Földnedvesség csatlakoztatva A0-ra
+ *
+*************************************************************************************************************************/
+
+/* OLED */
+#include <ACROBOTIC_SSD1306.h> // SCL ==> D1; SDA ==> D2
+#include <SPI.h>
+#include <Wire.h>
+
+#include "DHT.h"
+#define DHTPIN D3  
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+float hum = 0;
+float temp = 0;
+
+/* foldnedvesseg*/
+#define soilMoisterPin A0
+#define soilMoisterVcc D4
+int soilMoister = 0;
+
+void setup() 
+{
+  Serial.begin(115200);
+  delay(10);
+  dht.begin();
+  oledStart();
+  digitalWrite (soilMoisterVcc, LOW);
+}
+
+void loop() 
+{
+  getDhtData();
+  getSoilMoisterData();
+  displayData();
+  delay(2000); // késleltetés
+}
+
+/***************************************************
+ * Start OLED
+ **************************************************/
+void oledStart(void)
+{
+  Wire.begin();  
+  oled.init();                      
+  clearOledDisplay();
+  oled.clearDisplay();             
+  oled.setTextXY(0,0);              
+  oled.putString(" Teszt ");
+}
+
+/***************************************************
+ * DHT
+ **************************************************/
+void getDhtData(void)
+{
+  float tempIni = temp;
+  float humIni = hum;
+  temp = dht.readTemperature();
+  hum = dht.readHumidity();
+  if (isnan(hum) || isnan(temp))  
+  {
+    Serial.println("Hiba leolvasakor a DHT szenzorrol!");
+    temp = tempIni;
+    hum = humIni;
+    return;
+  }
+}
+
+/***************************************************
+ * Adatgyujtes szenzorokrol
+ **************************************************/
+void getSoilMoisterData(void)
+{
+  soilMoister = 0;
+  digitalWrite (soilMoisterVcc, HIGH);
+  delay (500);
+  int N = 3;
+  for(int i = 0; i < N; i++) // Nszer olvas és átlag
+  {
+    soilMoister += analogRead(soilMoisterPin);   
+    delay(150);
+  }
+  digitalWrite (soilMoisterVcc, LOW);
+  soilMoister = soilMoister/N; 
+  Serial.println(soilMoister);
+  soilMoister = map(soilMoister, 380, 0, 0, 100); 
+}
+
+/***************************************************
+ * kiíratás szerialra és kijelzőre
+ **************************************************/
+void displayData(void)
+{
+  Serial.print(" Hom: ");
+  Serial.print(temp);
+  Serial.print("oC   Parat: ");
+  Serial.print(hum);
+  Serial.println("%");
+  
+  oled.setTextXY(3,0);              
+  oled.putString("Hom: " + String(temp) + " oC");
+  oled.setTextXY(5,0);              
+  oled.putString("Parat:  " + String(hum) + " %");
+   oled.setTextXY(7,0);              
+  oled.putString("Nedv: " + String(soilMoister) + "%");
+}
+
+/***************************************************
+ * képernyo torles
+ **************************************************/
+void clearOledDisplay()
+{
+  oled.setFont(font8x8);
+  oled.setTextXY(0,0); oled.putString("                ");
+  oled.setTextXY(1,0); oled.putString("                ");
+  oled.setTextXY(2,0); oled.putString("                ");
+  oled.setTextXY(3,0); oled.putString("                ");
+  oled.setTextXY(4,0); oled.putString("                ");
+  oled.setTextXY(5,0); oled.putString("                ");
+  oled.setTextXY(6,0); oled.putString("                ");
+  oled.setTextXY(7,0); oled.putString("                ");
+  oled.setTextXY(0,0); oled.putString("                ");              
+}
+```
+
 
 

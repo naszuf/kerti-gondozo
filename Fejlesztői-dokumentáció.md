@@ -395,6 +395,30 @@ elektrolízissel).
 Tehát itt egy "időzítőt" kell használnunk, hogy helyesen ellenőrizzük a feladatok megfelelő időzítését. Ezt megtehetjük a
 millis (),de itt mutatunk be egy másik nagyszerű eszközt:
 SimpleTimer.h .
+Ezen a ponton mindegyik HW a heylén van. Hiányzik az a "logika", amely lehetővé teszi rendszerünk számára, hogy valóban elvégezze az ültetvény öntözésének feladatát automatikusan! Be kell vonnunk néhány „agyat” a projektbe.
+Definiáljuk azt a kezdeti tartományt, amelyen a szenzorok működnének. Ezeket az értékeket később a gyakorlati felhasználáshoz meg kell változtatni :
 
+### Talajnedvesség:
+"WET": Több mint ~50% (egyáltalán nincs öntözés)
+"Cél nedvesség": 30-60% (ahol dolgozni akarunk) és
+"SZÁRAZ": 30% alatt (be kell kapcsolni a szivattyút a nedvesség növeléséhez)
 
+### Levegő hőmérséklet:
+Hideg: 12 ° C (világítás / mlegítő bekapcsolása *)
+Optimális: 12 ° C és 22 ° C között
+HOT: 22 ° C felett (ne kapcsolja be a lámpát / melegítőt)
+Ne feledje, hogy minden vetőmagtípus optimális hőmérséklete más tartományú, ahol gyorsabban növekszik. Például a Paradicsom esetében a vetőmagok csírázásának minimális ideje 20 nap és 25 ° C közötti hőmérséklet a jó, a 6.nap
+felfelé haladva az alacsonyabb hőmérséklet a jó.
+A kapcsolatról (hőmérsékleti / csírázási napokról) további információt itt találhat az interneten.
+Miután ezt a 4 leolvasást (levegő hőmérséklete, levegő páratartalma, talaj nedvesség és talaj hőmérséklete) megkaptuk tudunk tovább lépni.
+Következő az időzítők beállítása:
+````
+/* Automatic Control Parameters Definition */
+#define DRY_SOIL 66
+#define WET_SOIL 85
+#define COLD_TEMP 12
+#define HOT_TEMP 22
+#define TIME_PUMP_ON 15
+#define TIME_LAMP_ON 15
+````
 

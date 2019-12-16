@@ -32,7 +32,7 @@ LevegoH[C]- levegő hőmérséklet
  PMP- pumpa állapota (on/off)
  LMP-lámpa állapota (on/off)
 ```
-
+Ha telefonról is követni szeretné az adatok alakulását a NodeMCU eszköze legyen wifi közelben illetve legyen bellítva rajta wifije bssid-je illetve jelszava mivel enélkül nem fog működni. Blynk alkalmazáson kersztül amit play áruházból is letölthet követheti nyomon a dolgokat.
 Utolsó sorban győződjön meg a pumpa által használt cső helyzetéről hogy a víz biztosan jó helyre kerüljön. Illetve a pumpa lámpa áram ellátásáról mivel külső forrásból kapják az áramot!
 
 

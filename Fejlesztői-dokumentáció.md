@@ -48,7 +48,8 @@ SSD1306 Arduino könyvtár
 Miután újraindította az IDE-t, már működik is. Töltsük fel az alábbiakban feltüntetett vázlatot.
 Teszteljük az OLED kijelzőnket:
 
-`/***********************************************************************
+`
+> /***********************************************************************
 *  NodeMCU és Oled kijelzo teszt
 ************************************************************************/
 
@@ -68,4 +69,5 @@ void setup()
 
 void loop()
 {
-}`
+}
+`> 

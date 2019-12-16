@@ -346,5 +346,55 @@ void clearOledDisplay()
 }
 ```
 
+Néhány megjegyzés a fenti kódról:
+Az érzékelő adatait háromszor rögzíti, és átlagot vesz.
+A MAP segítségével állíthatjuk be a tartományt százalékban.
+"Rövidzárlat" készítése az érzékelő szondainál ("100% páratartalomnak felel meg")
+
+## 7. lépés: A talajhőmérséklet összegyűjtése
+
+Ebben a projektben a DS18B20 érzékelő vízálló változatát fogjuk használni. Nagyon hasznos távoli hőmérséklet mérésre
+nedves körülmények között, nedves talajon például. Az érzékelő el van szigetelve és méréseket végezhet 125 ° C-ig (nem javasolt 100 ° C-nál nagyobb hőmérsékleten történő használatát a kábel PVC burkolata miatt).
+A DS18B20 egy digitális érzékelő, amelyet még hosszú távolságra is jó használni! Ezek az 1-vezetékes digitális
+a hőmérséklet-érzékelők meglehetősen pontosak (± 0,5 ° C tartományon belül mérnek) és akár 12 bit pontosságot adnak
+a beépített digitális-analóg konverterről. Kiválóan működnek a NodeMCU-val egyetlen digitális tű segítségével, és
+akár többet is csatlakoztathat ugyanahhoz a tűhöz, mindegyik egyedi, 64 bites azonosítóval rendelkezik, amelyet a gyárba beégettek megkülönböztetni őket.
+Az érzékelő 3,0-5,0 V feszültséggel működik.
+Az érzékelőnek 3 vezetéke van:
+Fekete: GND
+Piros: VCC
+Sárga: 1-adat
+Itt található a teljes adat: DS18B20 adatlap
+A DS18B20 megfelelő használatához két könyvtárra lesz szükség:
+1. OneWire 
+2. Dallas hőmérséklet
+Telepítse mindkét könyvtárat az Arduino IDE Library tárhelyébe.
+Az érzékelő teszteléséhez használhatja a "Simple.ino" kódot, amely a Példák könyvtárban található. Töltse fel a kódot a NodeMCU-ba, és a soros monitor segítségével ellenőrizze a hőmérsékletet. Tartsa a kezén az érzékelőt, látnia kell a kb
+32 / 34oC.
+1. MEGJEGYZÉS: A OneWire könyvtárnak speciális könyvtárnak kell lennie, amelyet az ESP8266-hoz való használatra módosítottak, különben
+hiba adódik az kód compilálás során.
+
+![](https://escapequotes.net/wp-content/uploads/2017/01/ds18b20.jpg)
+
+
+## 8. lépés: A HW befejezése
+
+Ellenőrizze, hogy az összes szenzort (DHT11, DS18B20 és LM393 / YL69). A NodeMCU csak a vezérlőjelek továbbítására szolgál. Ne felejtse el, hogy a NodeMCU 3.3V adásával, ha az áramellátás biztosítja, instabilvá válhat az áramfogyasztás miatt. Node mcura ledeket is csatlakoztathat hogy tesztelje az aktuátorokat. Szimulációként pl: a Pump (piros LED) és a
+Lámpa (zöld LED). A végső áramkörhöz a relék kapcsolódnak. Az érzékelők leolvasása alapján a felhasználó dönthet úgy is, hogy manuálisan vezérli a szivattyút és / vagy a lámpát. Mert
+blynken keresztül virtuális gombokon vezérelhetők.
+A helyi parancs leolvasásához a readLocalCmd () függvényt kell végrehajtani. Ez a funkció mindegyiket elolvassa, aktualizálja az aktuátorok változóinak (pumpStatus és lampStatus) állapotát.
+
+HÁrom nagy csoportra oszthatjuk a feladatokat:
+1. Érzékelő leolvasás
+2. Szivattyú Lámpa vezérlése
+3. Adatok megjelenítése
+
+Rá fogunk jönni, hogy az ilyen feladatok elvégzésének ideje nem feltétlenül azonos. Például,
+a DHT 11 hőmérséklet és páratartalom mérő adatainak beolvasásához legalább 2 másodpercet várnunk kell a mérések között. A talajnedvesség-érzékelőnél minél kevesebb mérést végezzünk, annál jobb (mivel a szonda korrózióját okozza
+elektrolízissel).
+Tehát itt egy "időzítőt" kell használnunk, hogy helyesen ellenőrizzük a feladatok megfelelő időzítését. Ezt megtehetjük a
+millis (),de itt mutatunk be egy másik nagyszerű eszközt:
+SimpleTimer.h .
+
 
 

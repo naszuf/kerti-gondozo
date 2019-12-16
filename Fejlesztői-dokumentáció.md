@@ -412,7 +412,7 @@ felfelé haladva az alacsonyabb hőmérséklet a jó.
 A kapcsolatról (hőmérsékleti / csírázási napokról) további információt itt találhat az interneten.
 Miután ezt a 4 leolvasást (levegő hőmérséklete, levegő páratartalma, talaj nedvesség és talaj hőmérséklete) megkaptuk tudunk tovább lépni.
 Következő az időzítők beállítása:
-````
+```
 /* Automatic Control Parameters Definition */
 #define DRY_SOIL 66
 #define WET_SOIL 85
@@ -420,5 +420,5 @@ Következő az időzítők beállítása:
 #define HOT_TEMP 22
 #define TIME_PUMP_ON 15
 #define TIME_LAMP_ON 15
-````
+```
 

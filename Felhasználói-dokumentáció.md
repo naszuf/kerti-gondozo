@@ -24,12 +24,14 @@ alatta ez a szimbólum lesz látható:
  *-
 válatakozásával jelzi a szenzor adatok frissülését.
 Majd ilyen sorrendben lesznek láthatóak a szenzoradatok:
- LevegoH[C]- levegő hőmérséklet
+ ```
+LevegoH[C]- levegő hőmérséklet
  LevegoN[%]- levegő páratartalom
  FoldH [C]-termőföld hőmérséklete
  FoldN [%]-termőföld nedvessége
  PMP- pumpa állapota (on/off)
  LMP-lámpa állapota (on/off)
+```
 
 Utolsó sorban győződjön meg a pumpa által használt cső helyzetéről hogy a víz biztosan jó helyre kerüljön. Illetve a pumpa lámpa áram ellátásáról mivel külső forrásból kapják az áramot!
 

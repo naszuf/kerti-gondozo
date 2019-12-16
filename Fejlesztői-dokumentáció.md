@@ -210,6 +210,8 @@ LM393 VCC a NodeMCU VCC-hez vagy a NodeMCU GPIO D3-hoz *
 LM393 GND a NodeMCU GND-hez
 LM393 D0 üresen marad
 
+![](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.electronicwings.com%2Fnodemcu%2Fsoil-moisture-sensor-interfacing-with-nodemcu&psig=AOvVaw2mKUYduL4kCAls5HBVSuhm&ust=1576610292007000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIjEgZnxuuYCFQAAAAAdAAAAABAD)
+
 Fontos kiemelni, hogy a helyes az, ha az érzékelő VCC-jét kimenetként csatlakoztatjuk egy digitális tűhöz, így az LM393
 csak akkor van áram alatt, ha olvasásra van szükségünk. Ez nem csak az energiatakarékosságból, hanem a szonda védelme szempontjából is fontos, a korrózióval szemben. Tehát az LM393-at közvetlenül a VCC-re (5 V) tápláltam, a kódot nem kell megváltoztatni. Ez jól működött.
 Az analóg port olvasásához az alábbi egyszerű rutin írható:

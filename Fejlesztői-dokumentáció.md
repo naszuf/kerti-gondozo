@@ -477,7 +477,7 @@ lampStatus = 0;
 aplyCmd();
 }
 ```
-## 11. lépés: A BLYNK App létrehozása
+## 9. lépés: A BLYNK App létrehozása
 
 A BLYNK használatával nagyon könnyű építeni internetalapú projekteket. Először fel kell telepítenie a BLINK alkalmazás könyvtárát az Arduino IDE-n. Ha még nem rendelkezel vele, kövesd a következő lépéseket:
 1. Töltse le a BLYNK alkalmazást az Apple Iphone vagy a Google Android számára

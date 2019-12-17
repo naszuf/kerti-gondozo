@@ -361,7 +361,7 @@ void clearOledDisplay()
 Néhány megjegyzés a fenti kódról:
 Az érzékelő adatait háromszor rögzíti, és átlagot vesz.
 A MAP segítségével állíthatjuk be a tartományt százalékban.
-"Rövidzárlat" készítése az érzékelő szondainál ("100% páratartalomnak felel meg")
+"Rövidzárlat" készítése az érzékelő szondainál ("100% nedvességnek felel meg")
 
 ## 7. lépés: A talajhőmérséklet összegyűjtése
 

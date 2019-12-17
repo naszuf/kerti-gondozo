@@ -1,3 +1,13 @@
+# Fejlesztői Dokumentáció
+
+Anyagköltségek:
+* Földnedvesség mérő: 0,38€
+* Pumpa 2,03€ (5másodperc alatt tömkrement üzemanyag szivattyúval helyettesítettem)
+* OLED kijelző 1,69€
+* DS1820 (onewire) hőmérsékletmérő 1,05€
+* DHT 11 modul 0,60€
+
+
 A NodeMcu egy nyílt forráskódú fejlesztői kártya, amely az IoT világába repít el bennünket. Beépített Wifi modullal rendelkezik. Az ESP8266 modul egyszerű megoldást kínál WiFi kapcsolatok létesítésére. Számítógépes oldalról nem igényel extra kiegészítést. Programozását és tudását tekintve hasonlít az Arduino UNO-ra. A programok feltöltésére az Arduino IDE fejlesztői környezetet használtam. A leírás célja, hogy megmutassa azt ,hogyan tudunk egy öntöző rendszert az Arduino IDE fejlesztői környezettel illetve egyéb kiegészítőkkel az alapoktól egy komplett működő rendszerré varázsolni. Lássunk is neki. 
 
 ##  1.Arduino IDE fejlesztői környezet letöltése

@@ -1,6 +1,6 @@
 # Kedves felhasználó!
 
-Első lépésben  győződjön meg róla hogy a szenzorok jól a helyükön vannak-e. Ez nagyon fontos mivel ha nem jó helyen, rosszul, nem a helyükön helyezkednek el az érzékelők a növény túl sók vizet, hőt kaphat mivel a rendszer úgy érzékeli hideg, szárazság van.Más rossz eshetőségek is fenntállhatnak ilyen téren. HA meggyőződött a szenzorok állapotáról illetve a csatlakozásuk biztosságáról csatlakoztassa a micro usb csatlakozót a NodeMCU-hoz.
+Első lépésben  győződjön meg róla hogy a szenzorok jól a helyükön vannak-e. Ez nagyon fontos mivel ha nem jó helyen, rosszul, nem a helyükön helyezkednek el az érzékelők a növény túl sok vizet, hőt kaphat mivel a rendszer úgy érzékeli hideg, szárazság van.Más rossz kombinációk is fenntállhatnak ilyen téren. HA meggyőződött a szenzorok állapotáról illetve a csatlakozásuk biztosságáról csatlakoztassa a micro usb csatlakozót a NodeMCU-hoz.
 Az alábbi képen látható az eszköz:
 ![](https://www.mondaykids.com/media/catalog/product/cache/ebaefdd8244e9d937d98031606746575/h/t/httpsae01.alicdn.comkfhtb1gmpsfgatbunjsszfq6xgfpxarnetworking-internet-based-esp8266-micro-usb-repalce-cp2102-iot-nodemcu-lua-wireless-wifi-module-connector-development.jpg)
 
@@ -32,8 +32,8 @@ LevegoH[C]- levegő hőmérséklet
  PMP- pumpa állapota (on/off)
  LMP-lámpa állapota (on/off)
 ```
-Ha telefonról is követni szeretné az adatok alakulását a NodeMCU eszköze legyen wifi közelben illetve legyen bellítva rajta wifije bssid-je illetve jelszava mivel enélkül nem fog működni. Blynk alkalmazáson kersztül amit play áruházból is letölthet követheti nyomon a dolgokat.
-Utolsó sorban győződjön meg a pumpa által használt cső helyzetéről hogy a víz biztosan jó helyre kerüljön. Illetve a pumpa lámpa áram ellátásáról mivel külső forrásból kapják az áramot!
+Ha telefonról is követni szeretné az adatok alakulását a NodeMCU eszköze legyen wifi közelben illetve legyen bellítva rajta wifije bssid-je illetve jelszava mivel enélkül nem fog működni. Blynk alkalmazáson kersztül amit play áruházból is letölthet követheti nyomon a dolgokat illetve vezérelheti távolról az eszközét.
+Utolsó sorban győződjön meg a pumpa által használt cső helyzetéről hogy a víz biztosan jó helyre kerüljön. Illetve a pumpa ,lámpa áram ellátásáról mivel külső forrásból kapják az áramot!
 
 
 

@@ -1,1 +1,1 @@
-Welcome to the kerti-gondoz- wiki!
+Üdv a wikiben!

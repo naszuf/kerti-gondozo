@@ -6,7 +6,7 @@ Első lépésben  győződjön meg róla hogy a szenzorok jól a helyükön vann
 
 * Először áramtalanítsa a melegítő illetve a pumpát (első indításnál, újraindításnál bekapcsolt állapotba kerülhetnek 2-3 másdpercig ezek az eszközök)
 
-*Majd csatlakoztassa a micro usb csatlakozót a NodeMCU-hoz
+* Majd csatlakoztassa a micro usb csatlakozót a NodeMCU-hoz
 
 Az alábbi képen látható az eszköz:
 

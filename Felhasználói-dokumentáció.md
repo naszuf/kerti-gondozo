@@ -1,6 +1,8 @@
 # Kedves felhasználó!
 
-Első lépésben  győződjön meg róla hogy a szenzorok jól a helyükön vannak-e. Ez nagyon fontos mivel ha nem jó helyen, rosszul, nem a helyükön helyezkednek el az érzékelők a növény túl sok vizet, hőt kaphat mivel a rendszer úgy érzékeli hideg, szárazság van.Más rossz kombinációk is fenntállhatnak ilyen téren. HA meggyőződött a szenzorok állapotáról illetve a csatlakozásuk biztosságáról csatlakoztassa a micro usb csatlakozót a NodeMCU-hoz.
+Az alább olvashatja a Nodemcu farmer beüzemelési utasításait!
+
+****Első lépésben  győződjön meg róla hogy a szenzorok jól a helyükön vannak-e. Ez nagyon fontos mivel ha nem jó helyen, rosszul, nem a helyükön helyezkednek el az érzékelők a növény túl sok vizet, hőt kaphat mivel a rendszer úgy érzékeli hideg, szárazság van.Más rossz kombinációk is fenntállhatnak ilyen téren. HA meggyőződött a szenzorok állapotáról illetve a csatlakozásuk biztosságáról csatlakoztassa a micro usb csatlakozót a NodeMCU-hoz.
 Az alábbi képen látható az eszköz:
 ![](https://www.mondaykids.com/media/catalog/product/cache/ebaefdd8244e9d937d98031606746575/h/t/httpsae01.alicdn.comkfhtb1gmpsfgatbunjsszfq6xgfpxarnetworking-internet-based-esp8266-micro-usb-repalce-cp2102-iot-nodemcu-lua-wireless-wifi-module-connector-development.jpg)
 

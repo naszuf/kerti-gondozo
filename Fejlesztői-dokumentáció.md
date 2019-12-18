@@ -405,13 +405,13 @@ Rá fogunk jönni, hogy az ilyen feladatok elvégzésének ideje nem feltétlen�
 a DHT 11 hőmérséklet és páratartalom mérő adatainak beolvasásához legalább 2 másodpercet várnunk kell a mérések között. A talajnedvesség-érzékelőnél minél kevesebb mérést végezzünk, annál jobb (mivel a szonda korrózióját okozza
 elektrolízissel).
 Tehát itt egy "időzítőt" kell használnunk, hogy helyesen ellenőrizzük a feladatok megfelelő időzítését. Ezt megtehetjük a
-millis (),de itt mutatunk be egy másik nagyszerű eszközt:
+millis (),de itt mutatok be egy másik nagyszerű eszközt:
 SimpleTimer.h .
 Ezen a ponton mindegyik HW a heylén van. Hiányzik az a "logika", amely lehetővé teszi rendszerünk számára, hogy valóban elvégezze az ültetvény öntözésének feladatát automatikusan! Be kell vonnunk néhány „agyat” a projektbe.
 Definiáljuk azt a kezdeti tartományt, amelyen a szenzorok működnének. Ezeket az értékeket később a gyakorlati felhasználáshoz meg kell változtatni :
 
 ### Talajnedvesség:
-"WET": Több mint ~50% (egyáltalán nincs öntözés)
+"WET": Több mint ~60% (egyáltalán nincs öntözés)
 "Cél nedvesség": 30-60% (ahol dolgozni akarunk) és
 "SZÁRAZ": 30% alatt (be kell kapcsolni a szivattyút a nedvesség növeléséhez)
 

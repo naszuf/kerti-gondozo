@@ -15,7 +15,8 @@ Az alábbi képen látható az eszköz:
 Ha megtette a kijelzőn az elős pár másodpercben az előre beállított értékeket látja majd, kérem ellenőrizze helyességüket!
 
 
-```
+
+ ```
  DRY_SOIL - Száraz föld (ez az érték jelzi hogy milyen szenzor érték alatt öntözzön az öntözőrendszer)
  WET_SOIL - nedves föld (ez az érték jelzi hogy milyen szenzor érték alatt NE öntözzön az öntözőrendszer)
  COLD_TEMP - Hideg hőmérséklet  (ez az érték jelzi hogy milyen szenzor érték alatt működjön a melegítő rendszer , lámpa)
@@ -23,6 +24,7 @@ Ha megtette a kijelzőn az elős pár másodpercben az előre beállított ért�
  TIME_PUMP_ON - pumpa működési ideje (pl 15s is öntöz)
  TIME_LAMP_ON - lámpa működési ideje
 ```
+
 Ha bármi eltérést tapasztal ebben kérem keresse fel az eszköz üzemeltetőjét, ha tudja korrigálja szoftveres oldalon az ön által kívánt értékekre az alap paramétereket.
 
 ### Pár másodperc elteltével látja majd a szenzoradatokat és az alábbiakat.

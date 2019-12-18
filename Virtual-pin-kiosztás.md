@@ -1,4 +1,4 @@
-## Blynk appban a gombkiosztások
+## Blynk appban a kiosztások
 * airTemp //virtual pin V10
 * airHum  // virtual pin V11
 * soilMoister // virtual pin V12

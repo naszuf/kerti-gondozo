@@ -28,14 +28,16 @@ Ha megtette a kijelzőn az elős pár másodpercben az előre beállított ért�
 Ha bármi eltérést tapasztal ebben kérem keresse fel az eszköz üzemeltetőjét, ha tudja korrigálja szoftveres oldalon az ön által kívánt értékekre az alap paramétereket.
 
 ### Pár másodperc elteltével látja majd a szenzoradatokat és az alábbiakat.
+```
 a felső sorban látni fogja az eszköz fantázia nevét:
 NodeMCU farmer
 alatta ez a szimbólum lesz látható:
  *-
 válatakozásával jelzi a szenzor adatok frissülését.
+```
 Majd ilyen sorrendben lesznek láthatóak a szenzoradatok:
- ```
-LevegoH[C]- levegő hőmérséklet
+```
+ LevegoH[C]- levegő hőmérséklet
  LevegoN[%]- levegő páratartalom
  FoldH [C]-termőföld hőmérséklete
  FoldN [%]-termőföld nedvessége
